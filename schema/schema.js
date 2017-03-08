@@ -1,5 +1,5 @@
 const graphql = require('graphql');
-const _ = require('lodash');
+const axios = require('axios');
 
 const {
   GraphQLObjectType,
@@ -8,11 +8,6 @@ const {
   GraphQLSchema
 } = graphql;
 
-// istället för en databas.
-const users = [
-  { id: '23', firstName: 'Bill', age: 20 },
-  { id: '47', firstName: 'Samantha', age: 21 }
-];
 
 //
 const UserType = new GraphQLObjectType({
@@ -32,9 +27,10 @@ const RootQuery = new GraphQLObjectType({
       type: UserType,
       args: { id: { type: GraphQLString } }, // arg som vi kommer åt i arg i resolvfunktionen.
       resolve(parentValue, args) {
-        // koppling till databas
-        console.log(args);
-        return _.find(users, { id: args.id });
+        // hämtade data från en extern json-server.
+        // axios retunerar { data: {firstName: bill } }
+        return axios.get(`http://localhost:3000/users/${args.id}`)
+          .then(resp => resp.data);
       }
     }
   }
