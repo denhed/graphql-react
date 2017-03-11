@@ -104,3 +104,28 @@ companyId: String
 
 ```
 i dokumentationen ser vi ! och  det tyder på att vi måste ha med ett värde.
+
+## delete a user mutation
+
+```javascript
+mutation {
+  deleteUser(id: "23"){
+    id
+    firstName
+  }
+}
+```
+
+vi får tillbaka vilket tyder på framgång, i detta fall är det json-server
+som inte retunerar något. vi skulle vilja ha den user man raderade.
+
+```javascript
+{
+  "data": {
+    "deleteUser": {
+      "id": null,
+      "firstName": null
+    }
+  }
+}
+```
