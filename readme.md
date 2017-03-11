@@ -82,3 +82,25 @@ fragment companyDetails on Company {
   description
 }
 ```
+
+## add user mutation
+
+när man gör en mutation måste man även ange vad man vill ha tillbaka.
+```javascript
+mutation {
+  addUser(firstName: "Stephen", age: 26) {
+    id
+    firstName
+    age
+  }
+}
+```
+```javascript
+addUser(
+firstName: String!
+age: Int!
+companyId: String
+): User
+
+```
+i dokumentationen ser vi ! och  det tyder på att vi måste ha med ett värde.
