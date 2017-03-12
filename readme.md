@@ -129,3 +129,18 @@ som inte retunerar något. vi skulle vilja ha den user man raderade.
   }
 }
 ```
+
+## edit a user mutation
+vi använder oss av patch mot databasen som innebär att man bara uppdaterar alla
+eller vissa fält. pu innebär att man skriver över samtliga fält och har man inte
+tex en age med värde så kommer age vara null.
+
+```javascript
+mutation {
+ editUser(id: "40", age: 10){
+  id
+  age
+  firstName
+ }
+}
+```
